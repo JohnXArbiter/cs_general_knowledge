@@ -4,7 +4,7 @@ import "fmt"
 
 func main() {
 	array := []int{2, 5, 8, 12, 16, 23, 38, 56, 72, 91}
-	fmt.Println(BinarySearch2(array, 16))
+	fmt.Println(BinarySearch3(array, 17))
 }
 
 func BinarySearch(arr *[]int, leftIndex int, rightIndex int, findVal int) {
@@ -39,6 +39,21 @@ func BinarySearch2(a []int, target int) int {
 		}
 		if target < a[m] {
 			end = m - 1
+		}
+	}
+	return -1
+}
+
+func BinarySearch3(a []int, target int) int {
+	start, end := 0, len(a)-1
+	for start <= end {
+		mid := (start + end) / 2
+		if target == a[mid] {
+			return mid
+		} else if target < a[mid] {
+			end = mid - 1
+		} else if target > a[mid] {
+			start = mid + 1
 		}
 	}
 	return -1

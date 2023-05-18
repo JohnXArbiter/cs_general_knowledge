@@ -3,8 +3,17 @@ package main
 import "fmt"
 
 func main() {
-	//af := new(abstractFactory)
+	intelf := new(intelFactory)
+	intelc := intelf.createCPU()
+	intelc.calculate()
 
+	nvidiaf := new(nvidiaFactory)
+	nvidiag := nvidiaf.createGPU()
+	nvidiag.display()
+
+	kinsgtonf := new(kingstonFactory)
+	kingstonm := kinsgtonf.createMemory()
+	kingstonm.storage()
 }
 
 // 三个功能
@@ -40,6 +49,7 @@ func (*intelGPU) display() {
 	fmt.Println("intel's gpu is displaying...")
 }
 
+// kingston的
 type kingstonCPU struct{}
 
 func (*kingstonCPU) calculate() {
@@ -58,6 +68,7 @@ func (*kingstonGPU) display() {
 	fmt.Println("kingston's gpu is displaying...")
 }
 
+// nvidia的
 type nvidiaCPU struct{}
 
 func (*nvidiaCPU) calculate() {
@@ -93,39 +104,56 @@ func (*intelFactory) createCPU() abstractCPU {
 	return cpu
 }
 
-func (*intelFactory) createMemory() {
-
+func (*intelFactory) createMemory() abstractMemory {
+	var memory abstractMemory
+	memory = new(intelMemory)
+	return memory
 }
-func (*intelFactory) createGPU() {
 
+func (*intelFactory) createGPU() abstractGPU {
+	var gpu abstractGPU
+	gpu = new(intelGPU)
+	return gpu
 }
 
 // nvidia厂商
 type nvidiaFactory struct {
 }
 
-func (*nvidiaFactory) createCPU() {
-
+func (*nvidiaFactory) createCPU() abstractCPU {
+	var cpu abstractCPU
+	cpu = new(nvidiaCPU)
+	return cpu
 }
 
-func (*nvidiaFactory) createMemory() {
-
+func (*nvidiaFactory) createMemory() abstractMemory {
+	var memory abstractMemory
+	memory = new(nvidiaMemory)
+	return memory
 }
-func (*nvidiaFactory) createGPU() {
-
+func (*nvidiaFactory) createGPU() abstractGPU {
+	var gpu abstractGPU
+	gpu = new(nvidiaGPU)
+	return gpu
 }
 
 // kingston厂商
 type kingstonFactory struct {
 }
 
-func (*kingstonFactory) createCPU() {
-
+func (*kingstonFactory) createCPU() abstractCPU {
+	var cpu abstractCPU
+	cpu = new(kingstonCPU)
+	return cpu
 }
 
-func (*kingstonFactory) createMemory() {
-
+func (*kingstonFactory) createMemory() abstractMemory {
+	var memory abstractMemory
+	memory = new(kingstonMemory)
+	return memory
 }
-func (*kingstonFactory) createGPU() {
-
+func (*kingstonFactory) createGPU() abstractGPU {
+	var gpu abstractGPU
+	gpu = new(kingstonGPU)
+	return gpu
 }

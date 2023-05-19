@@ -43,18 +43,18 @@ func aget(list *Array, index int) {
 	}
 }
 
-//func aremove(list *Array, index int) {
+//func aremove(linearList *Array, index int) {
 //	var array []any
-//	copy(array, list.data)
+//	copy(array, linearList.data)
 //	var j int
-//	for i := 0; i < list.length; i++ {
+//	for i := 0; i < linearList.length; i++ {
 //		if i == index-1 {
-//			fmt.Printf("删除的数据：%d ", list.data[i])
+//			fmt.Printf("删除的数据：%d ", linearList.data[i])
 //			j = i
 //			break
 //		}
 //	}
-//	list.data[j:] = array[j+1:]
+//	linearList.data[j:] = array[j+1:]
 //}
 
 func adestroy(list *Array) {

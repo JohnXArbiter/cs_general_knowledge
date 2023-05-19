@@ -10,7 +10,7 @@ func main() {
 }
 
 /**
- * Definition for singly-linked list.
+ * Definition for singly-linked linearList.
  * type ListNode struct {
  *     Val int
  *     Next *ListNode

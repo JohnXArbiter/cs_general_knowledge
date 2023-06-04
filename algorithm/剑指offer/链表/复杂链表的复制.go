@@ -7,12 +7,5 @@ type Node struct {
 }
 
 func copyRandomList(head *Node) *Node {
-	if head == nil {
-		return nil
-	}
-	make(map[*Node]bool)
-	var newHead *Node
-	for head != nil {
-
-	}
+	return nil
 }

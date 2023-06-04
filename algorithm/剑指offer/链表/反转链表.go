@@ -27,11 +27,11 @@ func main() {
 	head3.Next = head4
 }
 
-func reverseList(head *ListNode) *ListNode {
+func reverseList(head *ListNode2) *ListNode2 {
 	if head == nil {
 		return nil
 	}
-	var tmp, newHead *ListNode
+	var tmp, newHead *ListNode2
 	for head != nil {
 		tmp = head.Next
 		head.Next = newHead

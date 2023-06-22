@@ -20,7 +20,7 @@ func quickSortPivot(a []int, start, end int) int {
 	a[start], a[random] = a[random], a[start]
 	pivot := start
 	j := start + 1
-	for i := start + 1; i < end+1; i++ {
+	for i := start + 1; i <= end; i++ {
 		// 只要当前a[i]小于基准值，那就说明满足升序排列，则j肯定也向后
 		// 不满足的话，j不加，就能代表当前下标位置的值是大于基准值的，在下一次找到小于基准值的就交换位置
 		if a[i] <= a[pivot] {
@@ -44,4 +44,23 @@ func quickSort(a []int, start, end int) {
 	pivot := quickSortPivot(a, start, end)
 	quickSort(a, start, pivot-1)
 	quickSort(a, pivot+1, end)
+}
+
+func QuickSortPivot(a []int, start, end int) int {
+	pivot := start
+	j := start + 1
+	for i := j; i <= end; i++ {
+		if a[i] < a[pivot] {
+			a[i], a[j] = a[j], a[i]
+			j++
+		}
+	}
+	a[pivot], a[j-1] = a[j-1], a[pivot]
+	return j - 1
+}
+
+func QuickSort(a []int, start, end int) {
+	pivot := QuickSortPivot(a, start, end)
+	QuickSort(a, start, pivot-1)
+	QuickSort(a, pivot+1, end)
 }

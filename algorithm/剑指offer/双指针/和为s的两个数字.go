@@ -8,7 +8,10 @@ func main() {
 func twoSum(nums []int, target int) []int {
 	for i := 0; i < len(nums); i++ {
 		a := target - nums[i]
-		isa := binarySearch(nums, a)
+		isa, err := binarySearch(nums, a)
+		if err != nil {
+			return nil
+		}
 		if isa == a {
 			return []int{nums[i], a}
 		}
@@ -16,7 +19,7 @@ func twoSum(nums []int, target int) []int {
 	return nil
 }
 
-func binarySearch(nums []int, target int) int {
+func binarySearch(nums []int, target int) (int, error) {
 	start, end := 0, len(nums)-1
 	for start <= end {
 		mid := (start + end) / 2
@@ -25,17 +28,16 @@ func binarySearch(nums []int, target int) int {
 		} else if target > nums[mid] {
 			start = mid + 1
 		} else {
-			return nums[mid]
+			return nums[mid], nil
 		}
 	}
-	return -999
+	return 0, nil
 }
 
 func twoSum2(nums []int, target int) []int {
 	i, j := 0, len(nums)-1
-	tmp := 0
 	for i < j {
-		tmp = nums[i] + nums[j]
+		tmp := nums[i] + nums[j]
 		if tmp == target {
 			return []int{nums[i], nums[j]}
 		} else if tmp > target {

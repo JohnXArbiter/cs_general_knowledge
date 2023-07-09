@@ -34,7 +34,80 @@ func maxSlidingWindow(nums []int, k int) []int {
 	return res
 }
 
-// 不行，笨方法
+func maxSlidingWindow2(nums []int, k int) []int {
+	var length = len(nums)
+	if length == 1 {
+		return nums
+	} else if k == 1 {
+		return nums
+	}
+
+	var (
+		res        = make([]int, 0)
+		max1, max2 int          // max1和max2分别存储最大和次大值
+		slideCount = length - k // 计算滑动次数
+	)
+
+	// 初始化max1,max2
+
+	if nums[0] > nums[1] {
+		max1 = 0
+		max2 = 1
+	} else {
+		max1 = 1
+		max2 = 0
+	}
+	for j := 2; j < k; j++ {
+		if nums[max1] <= nums[j] {
+			max1 = j
+		} else {
+			if nums[max2] <= nums[j] {
+				max2 = j
+			}
+		}
+	}
+	res = append(res, nums[max1])
+
+	for i := 1; i <= slideCount; i++ {
+		// 当max1，max2都被挤出起了，则重新拿出max1和max2
+		if max1 < i && max2 < i {
+			if nums[i] > nums[i+1] {
+				max1 = i
+				max2 = i + 1
+			} else {
+				max1 = i + 1
+				max2 = i
+			}
+			for j := i + 2; j < i+k; j++ {
+				if nums[max1] <= nums[j] {
+					max1 = j
+				} else {
+					if nums[max2] <= nums[j] {
+						max2 = j
+					}
+				}
+			}
+		}
+		if max1 >= i {
+			if nums[max1] <= nums[i+k-1] {
+				max1 = i + k - 1
+				max2 = max1
+			}
+			if nums[max2] <= nums[i+k-1] {
+				max2 = i + k - 1
+			}
+			res = append(res, nums[max1])
+		} else {
+			if nums[max2] < nums[i+k-1] {
+				max2 = i + k - 1
+			}
+			res = append(res, nums[max2])
+		}
+	}
+	return res
+}
+
+// 不行，暴力
 //func maxSlidingWindow(nums []int, k int) []int {
 //	var (
 //		length = len(nums)

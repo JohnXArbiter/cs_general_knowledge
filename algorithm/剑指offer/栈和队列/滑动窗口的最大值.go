@@ -28,7 +28,6 @@ func maxSlidingWindow(nums []int, k int) []int {
 		for i-queue[0] >= k {
 			queue = queue[1:]
 		}
-		//fmt.Println(queue)
 		res = append(res, nums[queue[0]])
 	}
 	return res

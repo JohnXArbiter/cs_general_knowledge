@@ -8,15 +8,16 @@ func main() {
 	fmt.Println(maxSlidingWindow(nums, k))
 }
 
-func maxSlidingWindow(nums []int, k int) []int {
-	// 规律：举例窗口[1,3,-1]中，其实只需要记录[3,-1]即可，因为左侧的1又小又靠左，不可能被选
-	// 如此，维护一个单调窗口队列，右侧有新值加入时，将左侧小于等于它的全部舍弃，这样能保证最左侧总是当前区间的最大值，且队列严格单调递减
+// 规律：举例窗口[1,3,-1]中，其实只需要记录[3,-1]即可，因为左侧的1又小又靠左，不可能被选
+// 如此，维护一个单调窗口队列，右侧有新值加入时，将左侧小于等于它的全部舍弃，这样能保证最左侧总是当前区间的最大值，且队列严格单调递减
 
-	res := []int{}
-	queue := []int{} //存的是下标
+func maxSlidingWindow(nums []int, k int) []int {
+	var (
+		res   = make([]int, 0)
+		queue = make([]int, 0)
+	)
 
 	for i, num := range nums {
-		//清理队尾
 		for len(queue) > 0 && nums[queue[len(queue)-1]] <= num {
 			queue = queue[:len(queue)-1]
 		}
@@ -24,7 +25,6 @@ func maxSlidingWindow(nums []int, k int) []int {
 		if i < k-1 {
 			continue
 		}
-		// 保持窗口宽度
 		for i-queue[0] >= k {
 			queue = queue[1:]
 		}
@@ -35,20 +35,17 @@ func maxSlidingWindow(nums []int, k int) []int {
 
 func maxSlidingWindow2(nums []int, k int) []int {
 	var length = len(nums)
-	if length == 1 {
-		return nums
-	} else if k == 1 {
+	if length == 1 || k == 1 {
 		return nums
 	}
 
 	var (
+		max1, max2 int // max1和max2分别存储最大和次大值
 		res        = make([]int, 0)
-		max1, max2 int          // max1和max2分别存储最大和次大值
 		slideCount = length - k // 计算滑动次数
 	)
 
 	// 初始化max1,max2
-
 	if nums[0] > nums[1] {
 		max1 = 0
 		max2 = 1

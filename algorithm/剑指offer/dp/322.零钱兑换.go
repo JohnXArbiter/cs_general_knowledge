@@ -11,8 +11,8 @@ func coinChange(coins []int, amount int) int {
 		return 0
 	}
 
-	dp := make([]int, 0)
-	for i := 0; i <= amount; i++ {
+	dp := []int{0}
+	for i := 1; i <= amount; i++ {
 		dp = append(dp, amount+1)
 	}
 	for i := 1; i <= amount; i++ {
@@ -22,7 +22,6 @@ func coinChange(coins []int, amount int) int {
 			}
 		}
 	}
-	fmt.Println(dp)
 	if dp[amount] > amount {
 		return -1
 	}

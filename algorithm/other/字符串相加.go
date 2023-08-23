@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func add(arr1 []int, arr2 []int) []int {
+func add1(arr1 []int, arr2 []int) []int {
 	l1 := len(arr1)
 	l2 := len(arr2)
 	maxLen := max(l1, l2) + 1
@@ -10,8 +10,8 @@ func add(arr1 []int, arr2 []int) []int {
 
 	carry := 0
 	for i := 0; i < maxLen; i++ {
-		num1 := getNum(arr1, l1-1-i)
-		num2 := getNum(arr2, l2-1-i)
+		num1 := getNum1(arr1, l1-1-i)
+		num2 := getNum1(arr2, l2-1-i)
 
 		sum := num1 + num2 + carry
 
@@ -26,14 +26,14 @@ func add(arr1 []int, arr2 []int) []int {
 	return res
 }
 
-func getNum(arr []int, index int) int {
+func getNum1(arr []int, index int) int {
 	if index >= 0 && index < len(arr) {
 		return arr[index]
 	}
 	return 0
 }
 
-func max(a, b int) int {
+func max1(a, b int) int {
 	if a > b {
 		return a
 	}

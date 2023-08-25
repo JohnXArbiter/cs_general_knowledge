@@ -12,7 +12,7 @@ import "container/list"
  */
 
 /*
-使用的是后序遍历，因为后续求高度，我们做一个判断，能获取最大高度，
+使用的是后序遍历，因为后序求高度，我们做一个判断，能获取最大高度，
 最大高度就是深度
 */
 func maxDepth(root *TreeNode) (depth int) {

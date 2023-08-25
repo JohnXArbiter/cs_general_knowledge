@@ -13,7 +13,7 @@ import (
  * }
  */
 func binaryTreePaths(root *TreeNode) []string {
-	stack := []*TreeNode{}
+	var stack []*TreeNode
 	paths := make([]string, 0)
 	res := make([]string, 0)
 	if root != nil {
